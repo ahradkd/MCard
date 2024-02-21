@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Button from './components/shared/Button'
+import Text from './components/shared/Text'
+import { useAlertContext } from '@contexts/AlertContext'
+import TextField from './components/shared/TextField'
+import Alert from './components/shared/Alert'
 
 function App() {
+  const { open } = useAlertContext()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TextField label="아이디" hasError={true} />
+
+      {/* <Alert open={true} title="테스트" onButtonClick={() => {}} /> */}
+
+      <Button
+        onClick={() => {
+          open({
+            title: '테스트',
+            description: '안녕하세요.',
+            onButtonClick: () => {},
+          })
+        }}
+      >
+        눌러보세요.
+      </Button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
